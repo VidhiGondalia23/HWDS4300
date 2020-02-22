@@ -1,10 +1,11 @@
 import pprint
-#Author:Vidhi Gondalia
+#Author : Vidhi Gondalia
 from pymongo import MongoClient
 
 client = MongoClient('localhost')
 
 db = client['product_catalog']
+
 
 #make product catelog with different cateogory products
 product_catalog = [{"productID": 12884,
@@ -12,7 +13,7 @@ product_catalog = [{"productID": 12884,
            "category":"Fragrance",
            "brand": "Gucci",
            "price":40,
-           "profile":["woody", "aqua", "fresh"], 
+           "profile":["woody", "aqua", "fresh"],
            "is_available": True},
         {"productID": 12885,
            "product_name": "fossil Timeless",
@@ -56,19 +57,27 @@ products = db.products
 result = products.insert_many(product_catalog)
 
 
-#find name of all collections in the database
-db.list_collection_names()
+# #find name of all collections in the database
+# db.list_collection_names()
+#
+# #query to find products that have the following attributes
+# for product in products.find({"diameter":"44mm", "brand":"Tommy Hilfiger","dial_color":"Beige"}):
+#     pprint.pprint(product)
+#
+# #query to find all products that are not available
+# for product in products.find({"is_available":False}):
+#     pprint.pprint(product)
+#
+# #query to find products that are in the clothing category
+# products.count_documents({"category":"Clothing"})
+#
 
-#query to find products that have the following attributes
-for product in products.find({"diameter":"44mm", "brand":"Tommy Hilfiger","dial_color":"Beige"}):
-    pprint.pprint(product)
+def find_product(dictionary):
+    for product in products.find(dictionary):
+        pprint.pprint(product)
+num1 = {"diameter":"44mm", "brand":"Tommy Hilfiger","dial_color":"Beige"}
+num2 = {"category":"Clothing"}
 
-#query to find all products that are not available
-for product in products.find({"is_available":False}):
-    pprint.pprint(product)
-
-#query to find products that are in the clothing category
-products.count_documents({"category":"Clothing"})
-
-
-
+print(find_product(num1))
+print(find_product(num2))
+print(find_product({"is_available":True, "price": { "$gt": 100}}))
