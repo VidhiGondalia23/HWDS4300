@@ -1,4 +1,5 @@
-PERFORMANCE ANALYSIS Author(s): Kristie Wong, Vidhi Gondalia
+CODE AUTHOR: Brian Fogarty
+PERFORMANCE ANALYSIS AUTHORS: Kristie Wong, Vidhi Gondalia
 
 Changed assumptions: From HW1, we changed the number of followers each of the users had from 3 to a range 10-20.
 This ensured that we were able to retrieve at least 10 tweets per user timeline. This did not let us compare SQL and 
