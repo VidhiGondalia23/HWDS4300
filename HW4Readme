@@ -1,0 +1,11 @@
+import scala.io.Source
+
+// creates a val called nulls and reads line
+val nulls = Source.fromFile(filename).getLines
+  // splits the string using comma delimiter with a int limit. For each line that is comma separated, 
+  // map a number to it, if it is null map to 1 otherwise map to 0
+  .map(_.split(",", -1)).map(a => a.map(z => if (z == "") 1 else 0))
+  // the reduce functionality used zip and zips the two sets of numbers together
+  // then adding the two elements in the map and printing it as a string with ","
+  .reduce((x, y) => (x zip y).map { case (u, v) => u + v })
+println(nulls.mkString(","))
