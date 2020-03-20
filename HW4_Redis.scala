@@ -36,7 +36,7 @@ object RedisR {
   }
 
   def lpop(key: String): Unit ={
-    supers - key
+    supers.drop(0)
   }
 
   def llen(key: String): Int = {
